@@ -1,0 +1,15 @@
+{
+  "name": "unity-movement-sync-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Carlos Cadori",
+  "license": "MIT",
+  "dependencies": {
+    "sand-socket": "^0.1.6"
+  }
+}
