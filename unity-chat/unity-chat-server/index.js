@@ -21,6 +21,14 @@ server.on('connected', (client) => {
       message
     }));
   });
+
+  // When client disconnects
+  client.on('disconnected', () => {
+    server.writeToAll('message', JSON.stringify({
+      nickname: "System",
+      message: `${client.nickname} has disconnected to the chat.`
+    }), client.id)
+  })
 });
 
 server.listen();
