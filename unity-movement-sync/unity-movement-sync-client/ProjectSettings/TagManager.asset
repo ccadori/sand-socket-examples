@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Rock
+    uniqueID: 3647416883
+    locked: 0
+  - name: Character
+    uniqueID: 2092277335
+    locked: 0
+  - name: Tree
+    uniqueID: 524480783
+    locked: 0
+  - name: HUD
+    uniqueID: 2231659473
+    locked: 0

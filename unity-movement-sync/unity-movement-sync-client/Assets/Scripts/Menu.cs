@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Menu : MonoBehaviour
 {
-    public Game game;
+    public Main game;
     public SubmitInput input;
 
     private void Start()
@@ -14,6 +14,8 @@ public class Menu : MonoBehaviour
 
     public void SetNickname(string nickname)
     {
+        PlayerPrefs.SetString("nickname", nickname);
+
         game.client.Write("nickname", nickname);
         game.ChangeScene(Scene.Game);
     }
