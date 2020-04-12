@@ -46,6 +46,11 @@ server.on('connected', client => {
     }), client.id);
   });
 
+  // Disconnecting player from other clients
+  client.on('disconnected', () => {
+    server.writeToAll('disconnected', client.id, client.id);
+  });
+
 });
 
 server.listen();

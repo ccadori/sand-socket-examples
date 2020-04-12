@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 8353334507361955420}
-  velocity: 10
-  positionSyncRate: 0.5
+  positionSyncRate: 0.1
+  minPositionToSync: 0.2
 --- !u!1001 &2233170328240717065
 PrefabInstance:
   m_ObjectHideFlags: 0

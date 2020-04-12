@@ -30,8 +30,10 @@ public class Game : MonoBehaviour
         characters = new Dictionary<string, Character>();
         main = FindObjectOfType<Main>();
         currentPlayer = Instantiate(playerTemplate);
+        
         main.client.Emitter.On("new-client", OnNewClient);
         main.client.Emitter.On("position", OnPosition);
+        main.client.Emitter.On("disconnected", OnDisconnected);
 
         currentPlayer.character.Setup(
             PlayerPrefs.GetString("nickname"), 
@@ -64,10 +66,19 @@ public class Game : MonoBehaviour
         
         if (characters.ContainsKey(positionMessage.id))
         {
-            characters[positionMessage.id].SyncPosition = new Vector2(
+            characters[positionMessage.id].SetSyncPosition(new Vector2(
                 positionMessage.x, 
                 positionMessage.y
-            );
+            ));
+        }
+    }
+
+    public void OnDisconnected(string data)
+    {
+        if (characters.ContainsKey(data))
+        {
+            Destroy(characters[data].gameObject);
+            characters.Remove(data);
         }
     }
 }

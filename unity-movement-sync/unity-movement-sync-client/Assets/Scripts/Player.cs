@@ -6,7 +6,6 @@ public class Player : MonoBehaviour
     private Main game;
 
     public Character character;
-    public float velocity = 10f;
     public float positionSyncRate = 0.1f;
     public float minPositionToSync = 0.2f;
 
@@ -21,7 +20,7 @@ public class Player : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        Vector2 mod = (new Vector2(horizontal, vertical) * velocity * Time.deltaTime);
+        Vector2 mod = (new Vector2(horizontal, vertical) * character.velocity * Time.deltaTime);
         transform.position = (Vector2)transform.position + mod;
     }
 
