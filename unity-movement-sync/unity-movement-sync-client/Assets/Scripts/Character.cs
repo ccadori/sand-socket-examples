@@ -11,11 +11,8 @@ public class Character : MonoBehaviour
     public string id;
     public Text nicknameComponent;
     public float velocity = 10f;
-
-    private float lastSyncReceived;
-    private float lastSyncDelta;
-    private Vector2 lastSyncPosition;
-    private Vector2 syncPosition;
+    [HideInInspector]
+    public Vector2 targetPosition;
 
     public void Setup(string nickname, string id, float x, float y, bool sync)
     {
@@ -24,27 +21,15 @@ public class Character : MonoBehaviour
         this.nickname = nickname;
         transform.position = new Vector2(x, y);
         nicknameComponent.text = nickname;
-        syncPosition = new Vector2(x, y);
-        lastSyncPosition = syncPosition;
+        targetPosition = new Vector2(x, y);
     }
 
     private void Update()
     {
-        if (sync)
-        {
-            transform.position = Vector2.Lerp(
-                lastSyncPosition,
-                syncPosition,
-                (Time.time - lastSyncReceived) / lastSyncDelta
-            );
-        }
-    }
-
-    public void SetSyncPosition(Vector2 position) 
-    {
-        lastSyncDelta = Time.time - lastSyncReceived;
-        lastSyncPosition = syncPosition;
-        syncPosition = position;
-        lastSyncReceived = Time.time;
+        transform.position = Vector2.MoveTowards(
+            transform.position, 
+            targetPosition, 
+            velocity * Time.deltaTime
+        );
     }
 }

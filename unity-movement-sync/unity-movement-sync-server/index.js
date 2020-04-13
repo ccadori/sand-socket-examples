@@ -1,6 +1,5 @@
 const Sand = require('sand-socket');
 
-const distanceToUpdate = 2;
 const server = new Sand();
 server.verboseLog = true;
 
@@ -12,7 +11,10 @@ server.on('connected', client => {
     client.position = { y: 0, x: 0 };
     client.inGame = true;
     client.updatePosition = true;
+  });
 
+  // On game scene is loaded
+  client.on('in-game', () => {
     // Sending to other clients about the new client
     server.writeToAll("new-client", JSON.stringify({
       id: client.id,
@@ -21,10 +23,10 @@ server.on('connected', client => {
       y: client.position.y,
     }), client.id);
 
-    // Sending to the new clients the other ones
+    // Sending to the new client the other ones
     for (let c of server.clients) {
       if (!c.inGame || c.id === client.id) continue;
-
+      
       client.write("new-client", JSON.stringify({
         id: c.id,
         nickname: c.nickname,

@@ -42,6 +42,13 @@ public class Game : MonoBehaviour
             0,
             false
         );
+
+        Invoke("InGame", 0);
+    }
+
+    public void InGame()
+    {
+        main.client.Write("in-game", "");
     }
 
     public void OnNewClient(string data)
@@ -66,10 +73,10 @@ public class Game : MonoBehaviour
         
         if (characters.ContainsKey(positionMessage.id))
         {
-            characters[positionMessage.id].SetSyncPosition(new Vector2(
+            characters[positionMessage.id].targetPosition = new Vector2(
                 positionMessage.x, 
                 positionMessage.y
-            ));
+            );
         }
     }
 
