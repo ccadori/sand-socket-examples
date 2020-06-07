@@ -10,6 +10,6 @@
   "author": "Carlos Cadori",
   "license": "MIT",
   "dependencies": {
-    "sand-socket": "^0.1.6"
+    "sand-socket": "^0.3.1"
   }
 }
